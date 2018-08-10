@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The GenesisX developers
+// Copyright (c) 2017 The BIG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -100,31 +100,31 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x64;
+        pchMessageStart[0] = 0x34;
         pchMessageStart[1] = 0x32;
-        pchMessageStart[2] = 0x16;
-        pchMessageStart[3] = 0x08;
+        pchMessageStart[2] = 0x26;
+        pchMessageStart[3] = 0x28;
         vAlertPubKey = ParseHex("04bxbf5f4dab42002143f5b25a2e6fd658dd300508c0fd3c890edfa241edcdd224c9fb62d0a3e86ab655c384b598bd3e92d25fee84774060a0d461f0e9483587e5");
-        nDefaultPort = 5555;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // GenesisX starting difficulty is 1 / 2^12
+        nDefaultPort = 8705;
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // BIG starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 99999999;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 30; //
-        nTargetSpacing = 1 * 60;  // GenesisX: 60 Seconds
+        nTargetTimespan = 1 * 60; //
+        nTargetSpacing = 1 * 60;  // BIG: 60 Seconds
         nMaturity = 5;
         nMasternodeCountDrift = 20;
-        nMaxMoneyOut = 19000000 * COIN;
+        nMaxMoneyOut = 20000000 * COIN;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 200;
         nModifierUpdateBlock = 999999999;
         nZerocoinStartHeight = 201;
         nAccumulatorStartHeight = 1;
-        nZerocoinStartTime = 1527117718; // Human time (GMT): Wednesday, 23 May 2018 23:21:58
+        nZerocoinStartTime = 1533637884; // Human time (GMT): Wednesday, 23 May 2018 23:21:58
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
@@ -159,10 +159,11 @@ public:
         assert(hashGenesisBlock == uint256("0x000007d87c5c9a214365124b0109599ca2640d6b1b3a86ebe855b310f49cebc0"));
         assert(genesis.hashMerkleRoot == uint256("0xb06e08dc5a82489295d588795918f77689025b06527eb6e7ebc0ec2974114688"));
 
-        vSeeds.push_back(CDNSSeedData("seeds1.genesisx.net", "seeds1.genesisx.net"));// DNS SEEDER
-		vSeeds.push_back(CDNSSeedData("seeds2.genesisx.net", "seeds2.genesisx.net"));// DNS SEEDER
-		vSeeds.push_back(CDNSSeedData("seeds3.genesisx.biz", "seeds3.genesisx.biz"));// DNS SEEDER
-		vSeeds.push_back(CDNSSeedData("seed1.genesisx.net",  "seed1.genesisx.net")); // DNS SEEDER
+        vSeeds.push_back(CDNSSeedData("62.75.148.243", "62.75.148.243"));// DNS SEEDER
+		vSeeds.push_back(CDNSSeedData("188.138.61.52", "188.138.61.52"));// DNS SEEDER
+		vSeeds.push_back(CDNSSeedData("144.202.78.24", "144.202.78.24"));// DNS SEEDER
+		/*vSeeds.push_back(CDNSSeedData("seeds3.big.biz", "seeds3.big.biz"));// DNS SEEDER
+		vSeeds.push_back(CDNSSeedData("seed1.big.net",  "seed1.big.net")); // DNS SEEDER
 		vSeeds.push_back(CDNSSeedData("95.179.132.121", "95.179.132.121"));// Single node - Tom
 		vSeeds.push_back(CDNSSeedData("95.179.130.54", "95.179.130.54"));// Single node - Tom
 		vSeeds.push_back(CDNSSeedData("45.77.227.117", "45.77.227.117"));// Single node - Tom
@@ -171,10 +172,10 @@ public:
 		vSeeds.push_back(CDNSSeedData("209.250.243.131", "209.250.243.131"));// Single node - Remapper
 		vSeeds.push_back(CDNSSeedData("45.77.239.108", "45.77.239.108"));// Single node - Remapper
 		vSeeds.push_back(CDNSSeedData("45.32.235.211", "45.32.235.211"));// Single node - Remapper
-		vSeeds.push_back(CDNSSeedData("107.191.44.102", "107.191.44.102"));// Single node - Remapper
+		vSeeds.push_back(CDNSSeedData("107.191.44.102", "107.191.44.102"));// Single node - Remapper*/
        
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38); //G
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 24); 
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33); //G
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18); 
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x2e)(0x21)(0x71).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x08)(0x25)(0x39)(0x2F).convert_to_container<std::vector<unsigned char> >();
@@ -241,8 +242,8 @@ public:
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // GenesisX: 1 day
-        nTargetSpacing = 1 * 60;  // GenesisX: 1 minute
+        nTargetTimespan = 1 * 60; // BIG: 1 day
+        nTargetSpacing = 1 * 60;  // BIG: 1 minute
         nLastPOWBlock = 200;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -269,14 +270,14 @@ public:
         vSeeds.push_back(CDNSSeedData("45.77.176.204", "45.76.226.204"));       // Single node address
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet genesisx addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet genesisx script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet big addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet big script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet genesisx BIP32 pubkeys start with 'DRKV'
+        // Testnet big BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet genesisx BIP32 prvkeys start with 'DRKP'
+        // Testnet big BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet genesisx BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet big BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -323,8 +324,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // GenesisX: 1 day
-        nTargetSpacing = 1 * 60;        // GenesisX: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // BIG: 1 day
+        nTargetSpacing = 1 * 60;        // BIG: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1515524400;
         genesis.nBits = 0x1e0ffff0;

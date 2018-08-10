@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: genesisxd.service
-Upstart: genesisxd.conf
-OpenRC:  genesisxd.openrc
-         genesisxd.openrcconf
-CentOS:  genesisxd.init
+SystemD: bigd.service
+Upstart: bigd.conf
+OpenRC:  bigd.openrc
+         bigd.openrcconf
+CentOS:  bigd.init
 
 have been made available to assist packagers in creating node packages here.
 

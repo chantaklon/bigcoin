@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The GenesisX developers
+// Copyright (c) 2017 The BIG developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,8 +17,8 @@
 #include <math.h>
 
 unsigned int static DarkGravityWave(const CBlockIndex* pindexLast) 
-{
-    /* current difficulty formula, genesisx - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+{	//return Params().ProofOfWorkLimit().GetCompact();
+    /* current difficulty formula, big - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -32,6 +32,9 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast)
     if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
         return Params().ProofOfWorkLimit().GetCompact();
     }
+	if (pindexLast->nHeight < Params().LAST_POW_BLOCK()) {
+		return Params().ProofOfWorkLimit().GetCompact();	
+	}
 
     if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
         uint256 bnTargetLimit = (~uint256(0) >> 24);

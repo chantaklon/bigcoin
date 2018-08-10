@@ -11,9 +11,9 @@
 static const int MODEL_UPDATE_DELAY = 250;
 
 /* AskPassphraseDialog -- Maximum passphrase length */
-static const int MAX_PASSXGSASE_SIZE = 1024;
+static const int MAX_PASSBIGASE_SIZE = 1024;
 
-/* GenesisX GUI -- Size of icons in status bar */
+/* BIG GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 35
 
-#define QAPP_ORG_NAME "GenesisX"
-#define QAPP_ORG_DOMAIN "genesisx.org"
-#define QAPP_APP_NAME_DEFAULT "GenesisX-Qt"
-#define QAPP_APP_NAME_TESTNET "GenesisX-Qt-testnet"
+#define QAPP_ORG_NAME "BIG"
+#define QAPP_ORG_DOMAIN "big.org"
+#define QAPP_APP_NAME_DEFAULT "BIG-Qt"
+#define QAPP_APP_NAME_TESTNET "BIG-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

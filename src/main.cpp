@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The GenesisX developers
+// Copyright (c) 2017 The BIG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,7 +48,7 @@ using namespace std;
 using namespace libzerocoin;
 
 #if defined(NDEBUG)
-#error "GenesisX cannot be compiled without assertions."
+#error "BIG cannot be compiled without assertions."
 #endif
 
 // 6 comes from OPCODE (1) + vch.size() (1) + BIGNUM size (4)
@@ -1623,7 +1623,7 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
             //Check that txid is not already in the chain
             int nHeightTx = 0;
             if (IsTransactionInChain(tx.GetHash(), nHeightTx))
-                return state.Invalid(error("AcceptToMemoryPool : zGenesisX spend tx %s already in block %d", tx.GetHash().GetHex(), nHeightTx),
+                return state.Invalid(error("AcceptToMemoryPool : zBIG spend tx %s already in block %d", tx.GetHash().GetHex(), nHeightTx),
                                      REJECT_DUPLICATE, "bad-txns-inputs-spent");
 
             //Check for double spending of serial #'s
@@ -1633,12 +1633,12 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
                 CoinSpend spend = TxInToZerocoinSpend(txIn);
                 int nHeightTx = 0;
                 if (IsSerialInBlockchain(spend.getCoinSerialNumber(), nHeightTx))
-                    return state.Invalid(error("%s : zGenesisX spend with serial %s is already in block %d\n",
+                    return state.Invalid(error("%s : zBIG spend with serial %s is already in block %d\n",
                                                 __func__, spend.getCoinSerialNumber().GetHex(), nHeightTx));
 
                 //Is serial in the acceptable range
                 if (!spend.HasValidSerial(Params().Zerocoin_Params()))
-                    return state.Invalid(error("%s : zGenesisX spend with serial %s from tx %s is not in valid range\n",
+                    return state.Invalid(error("%s : zBIG spend with serial %s from tx %s is not in valid range\n",
                                                __func__, spend.getCoinSerialNumber().GetHex(), tx.GetHash().GetHex()));
             }
         } else {
@@ -2126,26 +2126,17 @@ int64_t GetBlockValue(int nHeight)
             return 250000 * COIN;
     }
 
-    if (nHeight == 0) {
-        nSubsidy = 190000 * COIN;
-	} else if (nHeight < 200 && nHeight > 0) {
-        nSubsidy = 1 * COIN;
-    } else if (nHeight < 25000 && nHeight > 200) {
-        nSubsidy = 15 * COIN;
-    } else if (nHeight < 100000 && nHeight > 25000) {
-        nSubsidy = 30 * COIN;
-	} else if (nHeight < 200000 && nHeight > 100000) {
-        nSubsidy = 20 * COIN;
-	} else if (nHeight < 500000 && nHeight > 200000) {
-        nSubsidy = 10 * COIN;
-	} else if (nHeight < 1000000 && nHeight > 500000) {
-        nSubsidy = 5 * COIN;
-	} else if (nHeight < 2000000 && nHeight > 1000000) {
+    if (nHeight == 202) {
+        nSubsidy = 500000 * COIN;
+		return nSubsidy;
+	} else if (nHeight <= 100000 && nHeight > 202) {
+        nSubsidy = 4 * COIN;
+		return nSubsidy;
+    } else if ( nHeight > 100000) {
         nSubsidy = 2 * COIN;
-    } else {
-        nSubsidy = 1 * COIN;
-    }
-    return nSubsidy;
+		return nSubsidy;
+	}
+    
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
@@ -2160,28 +2151,15 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 	// Variable Split for Masternodes
 	if (nHeight == 0) {
 	      ret = blockValue  / 100 * 0; // Return full Premine to POW (Block1)
-	} else if (nHeight < 25000 &&  nHeight > 0) {
+	} else if (nHeight > 0) {
 		  ret = blockValue  / 100 * 60; // 60% MN
-	} else if (nHeight < 100000 && nHeight > 25000) {
-		  ret = blockValue  / 100 * 70; // 70% MN
-	} else if (nHeight < 200000 && nHeight > 100000) {
-		  ret = blockValue  / 100 * 80; // 80% MN
-	} else if (nHeight < 500000 && nHeight > 200000) {
-		  ret = blockValue  / 100 * 85; // 85% MN
-	} else if (nHeight < 1000000 && nHeight > 500000) {
-		  ret = blockValue  / 100 * 90; // 90% MN
-	} else if (nHeight < 2000000 && nHeight > 1000000) {
-		  ret = blockValue  / 100 * 90; // 90% MN
-	} else {
-  		  ret = blockValue  / 100 * 90; // 90% MN 
-	}
-			
+	
 	return ret;
 }
-
+}
 bool IsInitialBlockDownload()
-{
-    LOCK(cs_main);
+{	return false;
+    /* LOCK(cs_main);
     if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
         return true;
     static bool lockIBDState = false;
@@ -2191,7 +2169,7 @@ bool IsInitialBlockDownload()
                   pindexBestHeader->GetBlockTime() < GetTime() - 6 * 60 * 60) && chainActive.Height() > 846; // ~144 blocks behind -> 2 x fork detection time
     if (!state)
         lockIBDState = true;
-    return state;
+    return state; */
 }
 
 bool fLargeWorkForkFound = false;
@@ -2470,7 +2448,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
         const CTransaction& tx = block.vtx[i];
 
         /** UNDO ZEROCOIN DATABASING
-         * note we only undo zerocoin databasing in the following statement, value to and from GenesisX
+         * note we only undo zerocoin databasing in the following statement, value to and from BIG
          * addresses should still be handled by the typical bitcoin based undo code
          * */
         if (tx.ContainsZerocoins()) {
@@ -2603,11 +2581,11 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("genesisx-scriptch");
+    RenameThread("big-scriptch");
     scriptcheckqueue.Thread();
 }
 
-void RecalculateZXGSMinted()
+void RecalculateZBIGMinted()
 {
     CBlockIndex *pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     int nHeightEnd = chainActive.Height();
@@ -2639,14 +2617,14 @@ void RecalculateZXGSMinted()
     pblocktree->Flush();
 }
 
-void RecalculateZXGSSpent()
+void RecalculateZBIGSpent()
 {
     CBlockIndex* pindex = chainActive[Params().Zerocoin_AccumulatorStartHeight()];
     while (true) {
         if (pindex->nHeight % 1000 == 0)
             LogPrintf("%s : block %d...\n", __func__, pindex->nHeight);
 
-        //Rewrite zXGS supply
+        //Rewrite zBIG supply
         CBlock block;
         assert(ReadBlockFromDisk(block, pindex));
 
@@ -2655,13 +2633,13 @@ void RecalculateZXGSSpent()
         //Reset the supply to previous block
         pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
-        //Add mints to zXGS supply
+        //Add mints to zBIG supply
         for (auto denom : libzerocoin::zerocoinDenomList) {
             long nDenomAdded = count(pindex->vMintDenominationsInBlock.begin(), pindex->vMintDenominationsInBlock.end(), denom);
             pindex->mapZerocoinSupply.at(denom) += nDenomAdded;
         }
 
-        //Remove spends from zXGS supply
+        //Remove spends from zBIG supply
         for (auto denom : listDenomsSpent)
             pindex->mapZerocoinSupply.at(denom)--;
 
@@ -2676,7 +2654,7 @@ void RecalculateZXGSSpent()
     pblocktree->Flush();
 }
 
-bool RecalculateXGSSupply(int nHeightStart)
+bool RecalculateBIGSupply(int nHeightStart)
 {
     if (nHeightStart > chainActive.Height())
         return false;
@@ -2863,7 +2841,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 if (zerocoinDB->ReadCoinSpend(spend.getCoinSerialNumber(), hashTxFromDB)) {
                     if(IsSerialInBlockchain(spend.getCoinSerialNumber(), nHeightTxSpend)) {
                         if(!fVerifyingBlocks || (fVerifyingBlocks && pindex->nHeight > nHeightTxSpend))
-                            return state.DoS(100, error("%s : zGenesisX with serial %s is already in the block %d\n",
+                            return state.DoS(100, error("%s : zBIG with serial %s is already in the block %d\n",
                                                         __func__, spend.getCoinSerialNumber().GetHex(), nHeightTxSpend));
                     }
                 }
@@ -2913,9 +2891,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     std::list<libzerocoin::CoinDenomination> listSpends = ZerocoinSpendListFromBlock(block);
 
     if (!fVerifyingBlocks && pindex->nHeight == Params().Zerocoin_StartHeight() + 1) {
-        RecalculateZXGSMinted();
-        RecalculateZXGSSpent();
-        RecalculateXGSSupply(1);
+        RecalculateZBIGMinted();
+        RecalculateZBIGSpent();
+        RecalculateBIGSupply(1);
     }
 
     // Initialize zerocoin supply to the supply from previous block
@@ -2954,7 +2932,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
     pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
-//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zGenesisXSpent: %s\n",
+//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zBIGSpent: %s\n",
 //              FormatMoney(nValueOut), FormatMoney(nValueIn),
 //              FormatMoney(nFees), FormatMoney(pindex->nMint), FormatMoney(nAmountZerocoinSpent));
 
@@ -3116,7 +3094,7 @@ void static UpdateTip(CBlockIndex* pindexNew)
 {
     chainActive.SetTip(pindexNew);
 
-    // If turned on AutoZeromint will automatically convert XGS to zXGS
+    // If turned on AutoZeromint will automatically convert BIG to zBIG
     if (pwalletMain->isZeromintEnabled ())
         pwalletMain->AutoZeromint ();
 
@@ -3943,7 +3921,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 REJECT_INVALID, "block-version");
         }
 
-        // GenesisX
+        // BIG
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -3968,13 +3946,13 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         if (!CheckTransaction(tx, fZerocoinActive, chainActive.Height() + 1 >= Params().Zerocoin_StartHeight(), state))
             return error("CheckBlock() : CheckTransaction failed");
 
-        // double check that there are no double spent zGenesisX spends in this block
+        // double check that there are no double spent zBIG spends in this block
         if (tx.IsZerocoinSpend()) {
             for (const CTxIn txIn : tx.vin) {
                 if (txIn.scriptSig.IsZerocoinSpend()) {
                     libzerocoin::CoinSpend spend = TxInToZerocoinSpend(txIn);
                     if (count(vBlockSerials.begin(), vBlockSerials.end(), spend.getCoinSerialNumber()))
-                        return state.DoS(100, error("%s : Double spending of zGenesisX serial %s in block\n Block: %s",
+                        return state.DoS(100, error("%s : Double spending of zBIG serial %s in block\n Block: %s",
                                                     __func__, spend.getCoinSerialNumber().GetHex(), block.ToString()));
                     vBlockSerials.emplace_back(spend.getCoinSerialNumber());
                 }
@@ -4292,7 +4270,7 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         }
     }
     if (nMints || nSpends)
-        LogPrintf("%s : block contains %d zGenesisX mints and %d zGenesisX spends\n", __func__, nMints, nSpends);
+        LogPrintf("%s : block contains %d zBIG mints and %d zBIG spends\n", __func__, nMints, nSpends);
 
     // ppcoin: check proof-of-stake
     // Limited duplicity on stake: prevents block flood attack
@@ -5414,7 +5392,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             return false;
         }
 
-        // GenesisX: We use certain sporks during IBD, so check to see if they are
+        // BIG: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         if (!pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) &&
             !pSporkDB->SporkExists(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2) &&

@@ -96,7 +96,7 @@ public:
 };
 
 /**
- * GenesisX RPC command dispatcher.
+ * BIG RPC command dispatcher.
  */
 class CRPCTable
 {

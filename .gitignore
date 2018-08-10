@@ -6,12 +6,12 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/genesisx
-src/genesisxd
-src/genesisx-cli
-src/genesisx-tx
-src/test/test_genesisx
-src/qt/test/test_genesisx-qt
+src/big
+src/bigd
+src/big-cli
+src/big-tx
+src/test/test_big
+src/qt/test/test_big-qt
 
 # autoreconf
 Makefile.in
@@ -37,8 +37,8 @@ confdefs.h
 conftest.cpp
 conftest.err
 libtool
-src/config/genesisx-config.h
-src/config/genesisx-config.h.in
+src/config/big-config.h
+src/config/big-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -63,7 +63,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-.genesisx
+.big
 *.a
 *.pb.cc
 *.pb.h
@@ -82,12 +82,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-genesisx-qt
-genesisx-Qt.app
+big-qt
+big-Qt.app
 
 # Unit-tests
 Makefile.test
-genesisx-qt_test
+big-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -103,7 +103,7 @@ build
 #lcov
 *.gcno
 /*.info
-test_genesisx.coverage/
+test_big.coverage/
 total.coverage/
 coverage_percent.txt
 

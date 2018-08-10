@@ -1,39 +1,39 @@
-GenesisX Core
+BIG Core
 =====================
 
 Setup
 ---------------------
-[GenesisX Core](http://GenesisXcoin.com) is the original GenesisX client and it builds the backbone of the network. However, it downloads and stores the entire history of GenesisX transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[BIG Core](http://BIGcoin.com) is the original BIG client and it builds the backbone of the network. However, it downloads and stores the entire history of BIG transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run GenesisX on your native platform.
+The following are some helpful notes on how to run BIG on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- bin/32/genesisx-qt (GUI, 32-bit) or bin/32/genesisxd (headless, 32-bit)
-- bin/64/genesisx-qt (GUI, 64-bit) or bin/64/genesisxd (headless, 64-bit)
+- bin/32/big-qt (GUI, 32-bit) or bin/32/bigd (headless, 32-bit)
+- bin/64/big-qt (GUI, 64-bit) or bin/64/bigd (headless, 64-bit)
 
 ### Windows
 
-Unpack the files into a directory, and then run genesisx-qt.exe.
+Unpack the files into a directory, and then run big-qt.exe.
 
 ### OSX
 
-Drag GenesisX-Qt to your applications folder, and then run GenesisX-Qt.
+Drag BIG-Qt to your applications folder, and then run BIG-Qt.
 
 ### Need Help?
 
-* See the documentation at the [GenesisX Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
+* See the documentation at the [BIG Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php) or on the [GenesisX Forum](http://GenesisXcoin.com/).
-* Join one of our Discord groups [GenesisX Discord Groups](https://discord.gg/YcnvMqt).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php) or on the [BIG Forum](http://BIGcoin.com/).
+* Join one of our Discord groups [BIG Discord Groups](https://discord.gg/YcnvMqt).
 
 Building
 ---------------------
-The following are developer notes on how to build GenesisX on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build BIG on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -41,7 +41,7 @@ The following are developer notes on how to build GenesisX on your native platfo
 
 Development
 ---------------------
-The GenesisX repo's [root README](https://github.com/eastcoastcrypto/GenesisX/blob/master/README.md) contains relevant information on the development process and automated testing.
+The BIG repo's [root README](https://github.com/eastcoastcrypto/BIG/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,7 +56,7 @@ The GenesisX repo's [root README](https://github.com/eastcoastcrypto/GenesisX/bl
 ### Resources
 
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) .
-* Join the [GenesisX-Dev] Discord groups [GenesisX Discord Groups](https://discord.gg/YcnvMqt).
+* Join the [BIG-Dev] Discord groups [BIG Discord Groups](https://discord.gg/YcnvMqt).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

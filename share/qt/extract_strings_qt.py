@@ -10,7 +10,7 @@ import operator
 import os
 import sys
 
-OUT_CPP="qt/genesisxstrings.cpp"
+OUT_CPP="qt/bigstrings.cpp"
 EMPTY=['""']
 
 def parse_po(text):
@@ -74,10 +74,10 @@ f.write("""
 #define UNUSED
 #endif
 """)
-f.write('static const char UNUSED *genesisx_strings[] = {\n')
+f.write('static const char UNUSED *big_strings[] = {\n')
 messages.sort(key=operator.itemgetter(0))
 for (msgid, msgstr) in messages:
     if msgid != EMPTY:
-        f.write('QT_TRANSLATE_NOOP("genesisx-core", %s),\n' % ('\n'.join(msgid)))
+        f.write('QT_TRANSLATE_NOOP("big-core", %s),\n' % ('\n'.join(msgid)))
 f.write('};\n')
 f.close()

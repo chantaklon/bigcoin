@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package genesisxd/genesisx-qt
-for Debian-based Linux systems. If you compile genesisxd/genesisx-qt yourself, there are some useful files here.
+This directory contains files used to package bigd/big-qt
+for Debian-based Linux systems. If you compile bigd/big-qt yourself, there are some useful files here.
 
-## genesisx: URI support ##
+## big: URI support ##
 
 
-genesisx-qt.desktop  (Gnome / Open Desktop)
+big-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install genesisx-qt.desktop
+	sudo desktop-file-install big-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your genesisxqt binary to `/usr/bin`
-and the `../../share/pixmaps/genesisx128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your bigqt binary to `/usr/bin`
+and the `../../share/pixmaps/big128.png` to `/usr/share/pixmaps`
 
-genesisx-qt.protocol (KDE)
+big-qt.protocol (KDE)
 

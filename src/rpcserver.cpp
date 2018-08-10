@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The GenesisX developers
+// Copyright (c) 2017 The BIG developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -238,10 +238,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop GenesisX server.");
+            "\nStop BIG server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "GenesisX server stopping";
+    return "BIG server stopping";
 }
 
 
@@ -318,36 +318,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* GenesisX features */
-        {"genesisx", "masternode", &masternode, true, true, false},
-        {"genesisx", "listmasternodes", &listmasternodes, true, true, false},
-        {"genesisx", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"genesisx", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"genesisx", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"genesisx", "masternodedebug", &masternodedebug, true, true, false},
-        {"genesisx", "startmasternode", &startmasternode, true, true, false},
-        {"genesisx", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"genesisx", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"genesisx", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"genesisx", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"genesisx", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"genesisx", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"genesisx", "mnbudget", &mnbudget, true, true, false},
-        {"genesisx", "preparebudget", &preparebudget, true, true, false},
-        {"genesisx", "submitbudget", &submitbudget, true, true, false},
-        {"genesisx", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"genesisx", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"genesisx", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"genesisx", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"genesisx", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"genesisx", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"genesisx", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"genesisx", "checkbudgets", &checkbudgets, true, true, false},
-        {"genesisx", "mnsync", &mnsync, true, true, false},
-        {"genesisx", "spork", &spork, true, true, false},
-        {"genesisx", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* BIG features */
+        {"big", "masternode", &masternode, true, true, false},
+        {"big", "listmasternodes", &listmasternodes, true, true, false},
+        {"big", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"big", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"big", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"big", "masternodedebug", &masternodedebug, true, true, false},
+        {"big", "startmasternode", &startmasternode, true, true, false},
+        {"big", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"big", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"big", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"big", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"big", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"big", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"big", "mnbudget", &mnbudget, true, true, false},
+        {"big", "preparebudget", &preparebudget, true, true, false},
+        {"big", "submitbudget", &submitbudget, true, true, false},
+        {"big", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"big", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"big", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"big", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"big", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"big", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"big", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"big", "checkbudgets", &checkbudgets, true, true, false},
+        {"big", "mnsync", &mnsync, true, true, false},
+        {"big", "spork", &spork, true, true, false},
+        {"big", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"genesisx", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"big", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -626,16 +626,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use genesisxd, or the -server option to genesisx-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use bigd, or the -server option to big-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=genesisxrpc\n"
+                                               "rpcuser=bigrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"GenesisX Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"BIG Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1086,7 +1086,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> genesisx-cli " + methodname + " " + args + "\n";
+    return "> big-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

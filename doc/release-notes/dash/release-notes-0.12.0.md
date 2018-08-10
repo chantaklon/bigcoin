@@ -100,4 +100,4 @@ AlexMomo
 snogcel
 bertlebbert
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/genesisx-project/genesisx-project-translations).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/big-project/big-project-translations).

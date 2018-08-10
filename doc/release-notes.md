@@ -1,12 +1,12 @@
 (note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-GenesisX Core version *version* is now available from:
+BIG Core version *version* is now available from:
 
-  <https://github.com/eastcoastcrypto/GenesisX/releases>
+  <https://github.com/eastcoastcrypto/BIG/releases>
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/eastcoastcrypto/GenesisXita/issues>
+  <https://github.com/eastcoastcrypto/BIGita/issues>
 
 Mandatory Update
 ==============
@@ -16,12 +16,12 @@ simul autem fortior nobis
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/GenesisX-Qt (on Mac) or genesisxd/genesisx-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/BIG-Qt (on Mac) or bigd/big-qt (on Linux).
 
 Compatibility
 ==============
 
-GenesisX Core is extensively tested on multiple operating systems using
+BIG Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -29,7 +29,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-GenesisX Core should also work on most other Unix-like systems but is not
+BIG Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 Notable Changes

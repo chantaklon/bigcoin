@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between genesisx-cli and genesisxd)
- * of a given instance of the GenesisX system.
+ * CBaseChainParams defines the base parameters (shared between big-cli and bigd)
+ * of a given instance of the BIG system.
  */
 class CBaseChainParams
 {

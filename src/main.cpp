@@ -2158,8 +2158,8 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
 }
 }
 bool IsInitialBlockDownload()
-{	return false;
-    /* LOCK(cs_main);
+{	//return false;
+     LOCK(cs_main);
     if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
         return true;
     static bool lockIBDState = false;
@@ -2169,7 +2169,7 @@ bool IsInitialBlockDownload()
                   pindexBestHeader->GetBlockTime() < GetTime() - 6 * 60 * 60) && chainActive.Height() > 846; // ~144 blocks behind -> 2 x fork detection time
     if (!state)
         lockIBDState = true;
-    return state; */
+    return state; 
 }
 
 bool fLargeWorkForkFound = false;
@@ -2948,7 +2948,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+    if (pindex->nHeight >= 202 && !IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
         return state.DoS(100,
             error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
                 FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
